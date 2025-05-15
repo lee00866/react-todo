@@ -8,7 +8,7 @@ export default function AddTodo({ onAdd }) {
 
     if (text.trim().length === 0) return;
 
-    onAdd({ id: uuidv4(), text: text, state: "activie" });
+    onAdd({ id: uuidv4(), text: text, status: "activie" });
     setText("");
   };
   const handleChange = (e) => {
