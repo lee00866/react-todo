@@ -1,27 +1,32 @@
 import { FaTrashAlt } from "react-icons/fa";
+import styles from "./Todo.module.css";
+
 export default function Todo({ todo, onUpdate, onDelete }) {
   const { text, status } = todo;
-
   const handleChange = (e) => {
     const status = e.target.checked ? "completed" : "active";
     onUpdate({ ...todo, status });
   };
-
-  const handleClick = () => {
+  const handleDelete = () => {
     onDelete(todo);
   };
-
   return (
-    <li>
+    <li className={styles.todo}>
       <input
+        className={styles.checkbox}
         type="checkbox"
-        onChange={handleChange}
+        id="checkbox"
         checked={status === "completed"}
+        onChange={handleChange}
       />
-      {text}
-      <button onClick={handleClick}>
-        <FaTrashAlt />
-      </button>
+      <label htmlFor="checkbox" className={styles.text}>
+        {text}
+      </label>
+      <span className={styles.icon}>
+        <button onClick={handleDelete} className={styles.button}>
+          <FaTrashAlt />
+        </button>
+      </span>
     </li>
   );
 }
